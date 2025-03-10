@@ -1,4 +1,5 @@
 -- states/menu.lua
+local Button = require("ui.button")
 
 Menu = {}
 
@@ -49,6 +50,12 @@ function Menu:update(dt)
     if self.currentMenu == "settings" then
         local mouseX, mouseY = love.mouse.getPosition()
         self.optionsMenu:updateHoverState(mouseX, mouseY)
+    end
+    if self.currentMenu == "main" then
+        local mouseX, mouseY = love.mouse.getPosition()
+        for i, button in ipairs(self.mainMenuButtons) do
+            button.hovered = button:isHovered(mouseX, mouseY)
+        end
     end
 end
 
